@@ -1,2 +1,12 @@
 \env
 \frames
+
+#Ignore input and output folders
+\input
+\output
+
+#Ignore media files
+
+*.png
+*.jpg
+*.mp4
