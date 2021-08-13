@@ -2,7 +2,7 @@ import cv2, os
 import numpy as np
 method = cv2.TM_SQDIFF_NORMED
 chapter = 74
-prev_image = long_image = cv2.imread('frames/%d_frames/0.jpg' % chapter)
+prev_image = long_image = cv2.imread('input/%d_frames/0.jpg' % chapter)
 
 #create input and output folders
 listFiles = os.listdir(".//")
@@ -14,7 +14,7 @@ if "output" not in listFiles:
 count = 0
 for img_num in range(0,466):
     #695
-    new_image = cv2.imread(f'frames/{chapter}_frames/{img_num}.jpg')
+    new_image = cv2.imread(f'input/{chapter}_frames/{img_num}.jpg')
     prev_image_cropped = prev_image[-500:-1,:]
     # cv2.imshow('output', prev_image_cropped)
     # cv2.waitKey(0)
