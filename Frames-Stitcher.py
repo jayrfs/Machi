@@ -1,13 +1,29 @@
-import cv2
+import cv2, os
 import numpy as np
 method = cv2.TM_SQDIFF_NORMED
-chapter = 75
-prev_image = long_image = cv2.imread('frames/%d_frames/7.jpg' % chapter)
+
+#create input and output folders if not present
+listFiles = os.listdir(".//")
+if "input" not in listFiles:
+    os.mkdir("input")
+if "output" not in listFiles:
+    os.mkdir("output")
+
+#add paths
+inputPath = ".//input//"
+outputPath = ".//output//"
+
+#get chapter
+chapter = int(input(f"Choose chapter to stitch: {os.listdir(inputPath)} :"))
+prev_image = long_image = cv2.imread(f"{inputPath}{chapter}_frames/0.jpg")
+numberFiles = os.listdir(f"{inputPath}{chapter}_frames/")
+
+#
+print(f"{len(numberFiles)} images detected in chapter {chapter}")
 
 count = 0
-for img_num in range(7,474):
-    #695
-    new_image = cv2.imread(f'frames/{chapter}_frames/{img_num}.jpg')
+for img_num in range(len(numberFiles)):
+    new_image = cv2.imread(f'{inputPath}{chapter}_frames/{img_num}.jpg')
     prev_image_cropped = prev_image[-500:-1,:]
     cv2.imshow('output', prev_image_cropped)
     cv2.waitKey(0)
@@ -27,6 +43,20 @@ for img_num in range(7,474):
 
     prev_image = new_image
     count+=1
-    print(count)
+    print(count,end=" ")
 
-cv2.imwrite(f'{chapter}_long.png', long_image)
+#safeguard to avoid overwriting files
+filename = f"{outputPath}{chapter}_stitched.png"
+
+def rename_old_files(filename):
+    file_duplicate = 0
+    number_files_output = os.listdir(outputPath)
+    for file in number_files_output:
+        if filename == filename:
+            file_duplicate += 1
+    if file_duplicate==1:
+        os.rename(filename,f"{filename[:-4]}({file_duplicate}).png")
+    return
+
+rename_old_files(filename)
+cv2.imwrite(filename, long_image)
