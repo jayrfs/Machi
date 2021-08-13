@@ -45,4 +45,18 @@ for img_num in range(len(numberFiles)):
     count+=1
     print(count,end=" ")
 
-cv2.imwrite(f'{outputPath}{chapter}_long.png', long_image)
+#safeguard to avoid overwriting files
+filename = f"{outputPath}{chapter}_stitched.png"
+
+def rename_old_files(filename):
+    file_duplicate = 0
+    number_files_output = os.listdir(outputPath)
+    for file in number_files_output:
+        if filename == filename:
+            file_duplicate += 1
+    if file_duplicate==1:
+        os.rename(filename,f"{filename[:-4]}({file_duplicate}).png")
+    return
+
+rename_old_files(filename)
+cv2.imwrite(filename, long_image)
