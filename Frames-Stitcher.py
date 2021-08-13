@@ -1,11 +1,11 @@
 import cv2
 import numpy as np
 method = cv2.TM_SQDIFF_NORMED
-chapter = 75
-prev_image = long_image = cv2.imread('frames/%d_frames/7.jpg' % chapter)
+chapter = 74
+prev_image = long_image = cv2.imread('frames/%d_frames/0.jpg' % chapter)
 
 count = 0
-for img_num in range(7,474):
+for img_num in range(0,466):
     #695
     new_image = cv2.imread(f'frames/{chapter}_frames/{img_num}.jpg')
     prev_image_cropped = prev_image[-500:-1,:]
