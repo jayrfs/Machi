@@ -24,7 +24,7 @@ print(f"{len(numberFiles)} images detected in chapter {chapter}")
 count = 0
 for img_num in range(len(numberFiles)):
     new_image = cv2.imread(f'{inputPath}{chapter}_frames/{img_num}.jpg')
-    prev_image_cropped = prev_image[-1000:-1,:]
+    prev_image_cropped = prev_image[-500:-1,:]
     # cv2.imshow('output', prev_image_cropped)
     # cv2.waitKey(0)
 
