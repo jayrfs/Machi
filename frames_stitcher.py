@@ -1,5 +1,7 @@
 import cv2, os
 import numpy as np
+from calculate_features import calculate_features
+from statistics import median, mean
 method = cv2.TM_SQDIFF_NORMED
 
 #create input and output folders if not present
@@ -16,8 +18,10 @@ outputPath = ".//output//"
 #get chapter
 chapter = int(input(f"Choose chapter to stitch: {os.listdir(inputPath)} :"))
 
-
 def stitchy_code(chapter_number,buffer_size=500):
+    #counters for stitched and skipped pages
+    n_skipped,n_stitched=0,0
+    detected_features=[10,10,10,10,10,10,10,10,10,10,10]
 
     numberFiles = os.listdir(f"{inputPath}{chapter_number}_frames/")
     prev_image = long_image = cv2.imread(f"{inputPath}{chapter_number}_frames/0.jpg")
@@ -39,10 +43,27 @@ def stitchy_code(chapter_number,buffer_size=500):
 
         # cv2.rectangle(new_image, (MPx,MPy),(MPx+tcols,MPy+trows),(0,0,255),2)
         # cv2.imshow('output',new_image)
-        long_image = np.concatenate((long_image, new_image[MPy + trows + 1:,:]), axis=0)
+
+        #  calculate features
+        features=calculate_features(new_image,10000)
+        print(f"features = {features}")
+
+        #max and min of detected features from last ten images
+        features_max_temp = max(detected_features[-10:])
+        features_min_temp = min(detected_features[-10:])
+
+        if features not in detected_features and features > 3000:
+            print("fresh image, stitching...")
+            long_image = np.concatenate((long_image, new_image[MPy + trows + 1:,:]), axis=0)
+            n_stitched+=1
+        else:
+            print("skipping")
+            n_skipped+=1
         # cv2.imshow('long img', long_image)
         # cv2.waitKey(0)
 
+        detected_features.append(features)
+        
         prev_image = new_image
         count+=1
         print(count,end=" ")
@@ -56,6 +77,9 @@ def stitchy_code(chapter_number,buffer_size=500):
     
     #uncomment when running testcode 1
     #cv2.imwrite(f"{filename}_buffer_{buffer_size}.png", long_image)
+    print(f"\nno. of stitched images = {n_stitched}\nno. of skipped images = {n_skipped}")
+    print(f"median of features = {median(detected_features)}")
+    print(f"mean of features = {mean(detected_features)}")
     return
 
 
@@ -71,7 +95,7 @@ def rename_old_files(filename_old):
     return
 
 
-stitchy_code(chapter)
+stitchy_code(chapter,500)
 
 
 '''

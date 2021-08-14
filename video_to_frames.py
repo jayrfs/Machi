@@ -2,6 +2,7 @@ import cv2
 import imagehash
 import numpy as np
 from skimage.measure import compare_ssim as ssim 
+
 def CaptureFrames(num):
   vidcap = cv2.VideoCapture(f'{num}.mp4')
   success,image = vidcap.read()

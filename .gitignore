@@ -21,3 +21,6 @@
 
 # Local History for Visual Studio Code
 .history/
+
+#pycache
+__pycache__
