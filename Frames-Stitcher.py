@@ -24,7 +24,7 @@ print(f"{len(numberFiles)} images detected in chapter {chapter}")
 count = 0
 for img_num in range(len(numberFiles)):
     new_image = cv2.imread(f'{inputPath}{chapter}_frames/{img_num}.jpg')
-    prev_image_cropped = prev_image[-500:-1,:]
+    prev_image_cropped = prev_image[-1000:-1,:]
     # cv2.imshow('output', prev_image_cropped)
     # cv2.waitKey(0)
 
@@ -48,14 +48,14 @@ for img_num in range(len(numberFiles)):
 #safeguard to avoid overwriting files
 filename = f"{outputPath}{chapter}_stitched.png"
 
-def rename_old_files(filename):
+def rename_old_files(filename_old):
     file_duplicate = 0
     number_files_output = os.listdir(outputPath)
     for file in number_files_output:
-        if filename == filename:
+        if filename[:-4] in filename_old:
             file_duplicate += 1
-    if file_duplicate==1:
-        os.rename(filename,f"{filename[:-4]}({file_duplicate}).png")
+    if file_duplicate>0:
+        os.rename(filename,f"{filename[:-4]}_old({file_duplicate}).png")
     return
 
 rename_old_files(filename)
