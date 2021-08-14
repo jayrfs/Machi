@@ -14,10 +14,10 @@ inputPath = ".//input//"
 outputPath = ".//output//"
 
 #get chapter
-#chapter = int(input(f"Choose chapter to stitch: {os.listdir(inputPath)} :"))
+chapter = int(input(f"Choose chapter to stitch: {os.listdir(inputPath)} :"))
 
 
-def stitchy_code(chapter_number,buffer_size='500'):
+def stitchy_code(chapter_number,buffer_size=500):
 
     numberFiles = os.listdir(f"{inputPath}{chapter_number}_frames/")
     prev_image = long_image = cv2.imread(f"{inputPath}{chapter_number}_frames/0.jpg")
@@ -26,7 +26,7 @@ def stitchy_code(chapter_number,buffer_size='500'):
     print(f"{len(numberFiles)} images detected in chapter {chapter_number}")
     for img_num in range(len(numberFiles)):
         new_image = cv2.imread(f'{inputPath}{chapter_number}_frames/{img_num}.jpg')
-        prev_image_cropped = prev_image[-100:-1,:]
+        prev_image_cropped = prev_image[-buffer_size:-1,:]
         # cv2.imshow('output', prev_image_cropped)
         # cv2.waitKey(0)
 
@@ -52,11 +52,14 @@ def stitchy_code(chapter_number,buffer_size='500'):
         
     #call rename function and write
     rename_old_files(filename)
-    cv2.imwrite(filename, long_image)
-
+    cv2.imwrite(f"{filename}", long_image)
+    
+    #uncomment when running testcode 1
+    #cv2.imwrite(f"{filename}_buffer_{buffer_size}.png", long_image)
     return
 
-#
+
+#safeguard to avoid overwriting files
 def rename_old_files(filename_old):
     file_duplicate = 0
     number_files_output = os.listdir(outputPath)
@@ -68,5 +71,12 @@ def rename_old_files(filename_old):
     return
 
 
-#safeguard to avoid overwriting files
-stitchy_code(74,500)
+stitchy_code(chapter)
+
+
+'''
+#test code 1
+for i in range(100,1500,100):
+    print(f"buffer size:{i}")
+    stitchy_code(74,i)
+'''
