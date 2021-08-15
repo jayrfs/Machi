@@ -80,6 +80,8 @@ def stitchy_code(chapter_number,buffer_size=500):
     print(f"\nno. of stitched images = {n_stitched}\nno. of skipped images = {n_skipped}")
     print(f"median of features = {median(detected_features)}")
     print(f"mean of features = {mean(detected_features)}")
+    print(f"long image size = {long_image.shape}")
+    print(f" final image = {long_image}")
     return
 
 
