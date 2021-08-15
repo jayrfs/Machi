@@ -6,9 +6,6 @@
 \output
 
 #Ignore media files
-
-*.png
-*.jpg
 *.mp4
 
 #vscode
