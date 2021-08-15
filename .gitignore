@@ -4,6 +4,7 @@
 #Ignore input and output folders
 \input
 \output
+\ignore
 
 #Ignore media files
 *.mp4
