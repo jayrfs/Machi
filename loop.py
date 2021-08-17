@@ -28,3 +28,4 @@ else:
         stitchy_code(int(files[:2]))
 
 print(f"\nProcess completed in {time.perf_counter()-start_time} seconds.")
+input('\nPress ENTER to exit')
