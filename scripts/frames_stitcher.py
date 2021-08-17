@@ -1,5 +1,6 @@
 import cv2, os
 import numpy as np
+from alive_progress import alive_bar
 from .remove_whitespace import remove_whitespace
 method = cv2.TM_SQDIFF_NORMED
 
@@ -25,29 +26,31 @@ def stitchy_code(chapter_number,buffer_size=300):
     prev_image = long_image = cv2.imread(f"{inputPath}{chapter_number}_frames/0.jpg")
     count = 0
     
-    print(f"{len(numberFiles)} images detected in chapter {chapter_number}")
-    for img_num in range(len(numberFiles)):
-        new_image = cv2.imread(f'{inputPath}{chapter_number}_frames/{img_num}.jpg')
-        prev_image_cropped = prev_image[-buffer_size:-1,:]
-        # cv2.imshow('output', prev_image_cropped)
-        # cv2.waitKey(0)
+    with alive_bar(len(numberFiles),title=f"Stitching chapter {chapter_number}...") as bar:
+        for img_num in range(len(numberFiles)):
+            new_image = cv2.imread(f'{inputPath}{chapter_number}_frames/{img_num}.jpg')
+            prev_image_cropped = prev_image[-buffer_size:-1,:]
+            # cv2.imshow('output', prev_image_cropped)
+            # cv2.waitKey(0)
 
-        result = cv2.matchTemplate(prev_image_cropped, new_image, method)
+            result = cv2.matchTemplate(prev_image_cropped, new_image, method)
 
-        mn,_,mnLoc,_ = cv2.minMaxLoc(result)
+            mn,_,mnLoc,_ = cv2.minMaxLoc(result)
 
-        MPx,MPy = mnLoc
-        trows,tcols = prev_image_cropped.shape[:2]
+            MPx,MPy = mnLoc
+            trows,tcols = prev_image_cropped.shape[:2]
 
-        # cv2.rectangle(new_image, (MPx,MPy),(MPx+tcols,MPy+trows),(0,0,255),2)
-        # cv2.imshow('output',new_image)
-        long_image = np.concatenate((long_image, new_image[MPy + trows + 1:,:]), axis=0)
-        # cv2.imshow('long img', long_image)
-        # cv2.waitKey(0)
+            # cv2.rectangle(new_image, (MPx,MPy),(MPx+tcols,MPy+trows),(0,0,255),2)
+            # cv2.imshow('output',new_image)
+            long_image = np.concatenate((long_image, new_image[MPy + trows + 1:,:]), axis=0)
+            # cv2.imshow('long img', long_image)
+            # cv2.waitKey(0)
 
-        prev_image = new_image
-        count+=1
-        print(count,end=" ")
+            prev_image = new_image
+            bar()
+            #bar.text(f"{len(numberFiles)} images detected in chapter {chapter_number}")
+            '''count+=1
+            print(count,end=" ")'''
 
     #assign old filename
     filename = f"{outputPath}{chapter_number}_stitched"

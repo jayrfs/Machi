@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from alive_progress import alive_bar
 method = cv2.TM_SQDIFF_NORMED
 
 def remove_whitespace(image, tolerance=100, scanner_width=42069):
@@ -33,25 +34,24 @@ def remove_whitespace(image, tolerance=100, scanner_width=42069):
     #used to dump enlarged_template, do not uncomment
     #cv2.imwrite(f".//ignore//dump//templatehaha.jpg", whitespace_template)
 
-    print(f"\nimage height = {image_height}")
 
     #iterate over every line of the stitched image
-    for h_line in range(0, image_height, tolerance):
-        crop_image = image[h_line:h_line+tolerance, 0:image_width]
-        test_image = image[h_line:h_line+tolerance, scanner_h_start:scanner_h_end]
-        #cv2.imwrite(f".//ignore/dele//test{h_line}.png", test_image)
-        is_whitespace = np.array_equal(test_image,whitespace_template)
-        if is_whitespace == False:
-            long_long_man = cv2.vconcat([long_long_man, crop_image])
-        #simple check to print progress
-        '''percentage_complete = h_line*100/image_height
-        if percentage_complete%1==0.0:
-            print(f"{percentage_complete}%",end='...')'''
-
-        if h_line%tolerance==0:
-            print(f"{h_line}",end='...')
-    
-    
+    with alive_bar(image_height//tolerance, title="Reducing whitespace...", bar="bubbles") as bar:
+        for h_line in range(0, image_height, tolerance):
+            crop_image = image[h_line:h_line+tolerance, 0:image_width]
+            test_image = image[h_line:h_line+tolerance, scanner_h_start:scanner_h_end]
+            #cv2.imwrite(f".//ignore/dele//test{h_line}.png", test_image)
+            is_whitespace = np.array_equal(test_image,whitespace_template)
+            if is_whitespace == False:
+                long_long_man = cv2.vconcat([long_long_man, crop_image])
+            #simple check to print progress
+            '''percentage_complete = h_line*100/image_height
+            if percentage_complete%1==0.0:
+                print(f"{percentage_complete}%",end='...')'''
+            
+            if h_line < image_height-tolerance:
+                bar()
+            #bar.text(f"image {image_height} pixels tall!")
 
     '''cv2.imwrite(f".//ignore//dump//output.jpg", long_long_man)
     print(f"image = {image.shape}")
