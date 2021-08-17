@@ -61,5 +61,5 @@ def remove_whitespace(image, tolerance=100, scanner_width=100):
     #cv2.imwrite(f".//trim.png", long_long_man)
     return(long_long_man)
 
-image=remove_whitespace(cv2.imread(f'.//output//74_stitched.png'), 100, 500)
-cv2.imwrite(f".//output//74_stitched_trim.png", image)
+#image=remove_whitespace(cv2.imread(f'.//output//74_stitched.png'), 500, 500)
+#cv2.imwrite(f".//output//74_stitched_trim.png", image)
