@@ -22,10 +22,18 @@ for files in list_of_files:
 chapter = (input(f"\nChoose a folder to stitch or press enter to stitch all: "))
 
 if chapter != "":
-    stitchy_code(chapter)
+    try:
+        stitchy_code(chapter)
+    except:
+        print('interation failed! skipping...')
+        pass
 else:
     for files in list_of_files:
-        stitchy_code(int(files[:2]))
+        try:
+            stitchy_code(int(files[:2]))
+        except:
+            print('interation failed! skipping...')
+            pass
 
 print(f"\nProcess completed in {time.perf_counter()-start_time} seconds.")
 input('\nPress ENTER to exit')
