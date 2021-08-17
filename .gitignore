@@ -5,12 +5,14 @@
 \input
 \output
 \ignore
+.\vscode
 
 #Ignore media files
 *.mp4
 
 #vscode
 .vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
