@@ -1,6 +1,6 @@
 import cv2, os
 import numpy as np
-from remove_whitespace import remove_whitespace
+from .remove_whitespace import remove_whitespace
 method = cv2.TM_SQDIFF_NORMED
 
 #create input and output folders if not present

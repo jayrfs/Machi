@@ -1,4 +1,4 @@
-from remove_whitespace import remove_whitespace
+from .remove_whitespace import remove_whitespace
 import cv2
 import time
 

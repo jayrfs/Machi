@@ -4,6 +4,8 @@ frames/*
 frames
 ignore/*
 ignore
+output
+output/*
 __pycache__
 __pycache__/*
 .vscode

@@ -1,5 +1,6 @@
 #from frames_stitcher import frames_stitcher
 import os
+import scripts.frames_stitcher
 
 #add paths
 inputPath = ".//input//"
