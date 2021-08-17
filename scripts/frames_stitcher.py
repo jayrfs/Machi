@@ -16,7 +16,7 @@ outputPath = ".//output//"
 extension = ".png"
 
 #get chapter
-chapter = int(input(f"Choose chapter to stitch: {os.listdir(inputPath)} :"))
+#chapter = int(input(f"Choose chapter to stitch: {os.listdir(inputPath)} :"))
 
 
 def stitchy_code(chapter_number,buffer_size=300):
@@ -76,7 +76,7 @@ def rename_old_files(filename_old):
     return
 
 
-stitchy_code(chapter)
+#stitchy_code(chapter)
 
 
 '''
