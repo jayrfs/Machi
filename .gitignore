@@ -1,26 +1,10 @@
-\env
-\frames
-
-#Ignore input and output folders
-\input
-\output
-\ignore
-.\vscode
-
-#Ignore media files
-*.mp4
-
-#vscode
-.vscode/*
-.vscode/
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
-
-# Local History for Visual Studio Code
-.history/
-
-#pycache
+input/*
+input
+frames/*
+frames
+ignore/*
+ignore
 __pycache__
+__pycache__/*
+.vscode
+./vscode/*
