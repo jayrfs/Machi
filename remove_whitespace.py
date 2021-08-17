@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 method = cv2.TM_SQDIFF_NORMED
 
-def remove_whitespace(image, tolerance=100, scanner_width=100):
+def remove_whitespace(image, tolerance=100, scanner_width=42069):
     
     #create placeholder image
     final_image = np.zeros((image.shape[0],image.shape[1],image.shape[2]))
@@ -11,8 +11,8 @@ def remove_whitespace(image, tolerance=100, scanner_width=100):
     image_color = image.shape[2]
     long_long_man = image[0:1, 0:image_width]
 
-    '''if scanner_width == 6969:
-        scanner_width = image_width'''
+    if scanner_width == 42069:
+        scanner_width = image_width
 
     scanner_center = image_width//2
     scanner_h_start = scanner_center - scanner_width//2
@@ -31,7 +31,7 @@ def remove_whitespace(image, tolerance=100, scanner_width=100):
     for j in range(0,scanner_width-1):
             whitespace_template =cv2.hconcat([whitespace_template, whitespace_template_duplicate])
     #used to dump enlarged_template, do not uncomment
-    cv2.imwrite(f".//ignore//dump//templatehaha.jpg", whitespace_template)
+    #cv2.imwrite(f".//ignore//dump//templatehaha.jpg", whitespace_template)
 
     print(f"\nimage height = {image_height}")
 
@@ -61,5 +61,7 @@ def remove_whitespace(image, tolerance=100, scanner_width=100):
     #cv2.imwrite(f".//trim.png", long_long_man)
     return(long_long_man)
 
-#image=remove_whitespace(cv2.imread(f'.//output//74_stitched.png'), 500, 500)
-#cv2.imwrite(f".//output//74_stitched_trim.png", image)
+
+#   test code
+'''image=remove_whitespace(cv2.imread(f'.//output//74_stitched.png'), 500)
+cv2.imwrite(f".//output//74_stitched_trim.png", image)'''
