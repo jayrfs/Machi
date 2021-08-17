@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 method = cv2.TM_SQDIFF_NORMED
 
-def remove_whitespace(image, tolerance=100):
+def remove_whitespace(image, tolerance=100, scanner_width=6969):
     
     #create placeholder image
     final_image = np.zeros((image.shape[0],image.shape[1],image.shape[2]))
@@ -10,6 +10,14 @@ def remove_whitespace(image, tolerance=100):
     image_width = image.shape[1]
     image_color = image.shape[2]
     long_long_man = image[0:1, 0:image_width]
+
+    if scanner_width == 6969:
+        scanner_width = image_width
+
+    scanner_center = image_width//2
+    scanner_h_start = scanner_center - scanner_width
+    scanner_h_end = scanner_center + scanner_width
+
     #read template
     whitespace_template = cv2.imread(f'.//resources//whitespace_template.jpg')
     #adjust tolerance
@@ -17,14 +25,17 @@ def remove_whitespace(image, tolerance=100):
         whitespace_template_duplicate = whitespace_template
         for i in range(0,tolerance-1):
             whitespace_template = cv2.vconcat([whitespace_template, whitespace_template_duplicate])
+    whitespace_template_duplicate = whitespace_template
+    for j in range(0,scanner_width-1):
+            whitespace_template =cv2.hconcat([whitespace_template, whitespace_template_duplicate])
     #used to dump enlarged_template, do not uncomment
-    #cv2.imwrite(f".//ignore//dump//output.jpg", whitespace_template)
+    cv2.imwrite(f".//ignore//dump//templatehaha.jpg", whitespace_template)
 
     print(f"\nimage height = {image_height}")
 
     #iterate over every line of the stitched image
     for h_line in range(0,image_height, tolerance):
-        crop_image = image[h_line:h_line+tolerance, 0:image_width]
+        crop_image = image[h_line:h_line+tolerance, scanner_h_start:scanner_h_end]
         is_whitespace = np.array_equal(crop_image,whitespace_template)
         if is_whitespace == False:
             long_long_man = cv2.vconcat([long_long_man, crop_image])
