@@ -20,7 +20,7 @@ def smart_splitter(image, name="image", parts=5):
     is_similar_count = []
     crop_heights = {"start":0,"end":0}
 
-    with alive_bar(title=f"Identifying empty space in {name}...",bar="bubbles") as bar:
+    with alive_bar(title=f"Scanning {name}...",bar="bubbles") as bar:
         for index, image_part in enumerate(range(0, image_height, part_height)):
             #print(index)
             #print(f"image_part = {image_part}")
@@ -39,6 +39,7 @@ def smart_splitter(image, name="image", parts=5):
                     #print(f"true strip {strip}")
                     break
         bar()
+        #bar.text(f"hahah{name}")
     
     #make last image extend to boundary
     #print(f"last image before {images_crop_heights[-1]}")
@@ -48,7 +49,7 @@ def smart_splitter(image, name="image", parts=5):
     #remove first part
     images_crop_heights.pop(0)
     
-    with alive_bar(len(images_crop_heights), title="splitting {name}...", bar="squares") as bar:
+    with alive_bar(len(images_crop_heights), title=f"Splitting {name}...", bar="squares") as bar:
         for index, clip in enumerate(images_crop_heights):
             '''print(clip)
             print(index)'''
@@ -56,6 +57,7 @@ def smart_splitter(image, name="image", parts=5):
             image_crop = image[current_dict["start"]:current_dict["end"],:]
             cropped_images.append(image_crop)
             bar()
+            #bar.text(f"hahah{name}")
             #cv2.imwrite(f"{name}{index}.png",image_crop)
 
     #print(f"len(images_crop_heigts) {len(images_crop_heights)}")
