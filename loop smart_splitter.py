@@ -34,7 +34,7 @@ if chapter != "":
 else:
     for files in list_of_files:
         try:
-            print(f"splitting chapter {chapter}")
+            print(f"splitting chapter {files}")
             photo = cv2.imread(f"{inputPath}{files}")
             split_images = smart_splitter(photo, files)
             write_output(split_images[0],split_images[1])
