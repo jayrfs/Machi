@@ -20,7 +20,7 @@ print("\t[+] - Input")
 print("\t | ")
 for files in list_of_files:
     print(f"\t └ {files}")
-chapter = input(f"\nChoose (enter index) a folder to stitch or press enter to stitch all: ")
+chapter = input(f"\nChoose (enter index) a folder to split or press enter to split all: ")
 
 if chapter != "":
     try:
