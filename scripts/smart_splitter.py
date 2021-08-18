@@ -20,7 +20,7 @@ def smart_splitter(image, name="image", parts=5):
     is_similar_count = []
     crop_heights = {"start":0,"end":0}
 
-    with alive_bar(title=f"Identifying areas to split...",bar="bubbles") as bar:
+    with alive_bar(title=f"Identifying empty space in {name}...",bar="bubbles") as bar:
         for index, image_part in enumerate(range(0, image_height, part_height)):
             #print(index)
             #print(f"image_part = {image_part}")
@@ -48,7 +48,7 @@ def smart_splitter(image, name="image", parts=5):
     #remove first part
     images_crop_heights.pop(0)
     
-    with alive_bar(len(images_crop_heights), title="splitting images...", bar="squares") as bar:
+    with alive_bar(len(images_crop_heights), title="splitting {name}...", bar="squares") as bar:
         for index, clip in enumerate(images_crop_heights):
             '''print(clip)
             print(index)'''
