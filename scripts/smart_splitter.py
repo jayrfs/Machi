@@ -18,9 +18,10 @@ def smart_splitter(image, name="image", parts=5):
     for index, image_part in enumerate(range(0, image_height, part_height)):
         print(index)
         cropped_images.append(image[image_part:image_part+part_height,:])
-        if cropped_images[index].shape[0] == part_height:
-            cv2.imwrite(f"{str(name[:-4])}_{index}.png", cropped_images[index])
+        if cropped_images[index].shape[0] < part_height/10:
+            continue
+        cv2.imwrite(f"{str(name)}_{index}.png", cropped_images[index])
     return(cropped_images)
 
 #frames_splitter(cv2.imread("Untitled.png"),100)
-smart_splitter(cv2.imread(".//input//71_stitched.png"),"test",10)
+smart_splitter(cv2.imread(".//input//71_stitched.png"),"test", 10)
