@@ -14,4 +14,15 @@ outputPath = ".//output//"
 extension = ".png"
 
 def write_output(image, filename="image"):
-    
+    if isinstance(image, np.ndarray):
+        for index, stuff in enumerate(image):
+            cv2.imwrite(f"{outputPath}{filename}_{index}_{extension}",stuff)
+    else:
+        cv2.imwrite(f"{outputPath}{filename}{extension}",image)
+    return
+
+if __name__ == "__main__":
+    folder=os.listdir(inputPath)
+    for file in folder:
+        photo = cv2.imread(f"{inputPath}{file}")
+        write_output(photo)

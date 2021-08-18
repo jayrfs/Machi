@@ -57,14 +57,13 @@ def stitchy_code(chapter_number,buffer_size=300):
         
     #call rename function and write
     #rename_old_files(filename)
-    cv2.imwrite(f"{filename}{extension}", long_image)
+    #cv2.imwrite(f"{filename}{extension}", long_image)
     
-    trimmed_long_image = remove_whitespace(long_image, 300, 650)
-    cv2.imwrite(f"{filename}_trim{extension}", trimmed_long_image)
+    ##cv2.imwrite(f"{filename}_trim{extension}", trimmed_long_image)
 
     #uncomment when running testcode 1
     #cv2.imwrite(f"{filename}_buffer_{buffer_size}.png", long_image)
-    return
+    return(long_image)
 
 
 #safeguard to avoid overwriting files

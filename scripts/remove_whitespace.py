@@ -3,7 +3,7 @@ import numpy as np
 from alive_progress import alive_bar
 method = cv2.TM_SQDIFF_NORMED
 
-def remove_whitespace(image, tolerance=100, scanner_width=42069):
+def remove_whitespace(image, name="image", tolerance=100, scanner_width=42069):
     
     #create placeholder image
     final_image = np.zeros((image.shape[0],image.shape[1],image.shape[2]))
@@ -59,7 +59,7 @@ def remove_whitespace(image, tolerance=100, scanner_width=42069):
     #np.savetxt("foo.csv", image, delimiter=",")
     #cv2.imshow(long_long_man)
     #cv2.imwrite(f".//trim.png", long_long_man)
-    return(long_long_man)
+    return(long_long_man, name)
 
 
 #   test code

@@ -54,7 +54,7 @@ def smart_splitter(image, name="image", parts=5):
         #cv2.imwrite(f"{name}{index}.png",image_crop)
 
     print(f"len(images_crop_heigts) {len(images_crop_heights)}")
-    return(cropped_images)
+    return(cropped_images, name)
 
 #frames_splitter(cv2.imread("Untitled.png"),100)
 #smart_splitter(cv2.imread(".//input//71_stitched.png"),"test", 6)
