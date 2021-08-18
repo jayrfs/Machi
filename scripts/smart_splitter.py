@@ -8,20 +8,54 @@ def smart_splitter(image, name="image", parts=5):
     image_width = image.shape[1]
     image_color = image.shape[2]
     part_height = image_height//parts
+    images_crop_heights = []
     cropped_images = []
 
-    print(f"image_height = {image.shape[0]}")
-    print(f"image_width = {image.shape[1]}")
-    print(f"image_color = {image.shape[2]}")
-    print(f"part_height = {image_height//parts}")
+    #print(f"image_height = {image.shape[0]}")
+    #print(f"image_width = {image.shape[1]}")
+    #print(f"image_color = {image.shape[2]}")
+    #print(f"part_height = {image_height//parts}")
+
+    is_similar_count = []
+    crop_heights = {"start":0,"end":0}
 
     for index, image_part in enumerate(range(0, image_height, part_height)):
+        #print(index)
+        #print(f"image_part = {image_part}")
+
+        #strip scanner
+        for strip in range(image_part,image_part+1000,20):
+            image1 = image[strip:strip+1,:]
+            image2 = image[strip+1:strip+2,:]
+            #print(f"scan strip {strip}")
+            is_similar =image1.shape == image2.shape and not(np.bitwise_xor(image1,image2).any())
+            is_similar_count.append(is_similar)
+            if is_similar:
+                crop_heights["end"]=strip
+                images_crop_heights.append(crop_heights.copy())
+                crop_heights["start"]=strip
+                #print(f"true strip {strip}")
+                break
+    
+    #make last image extend to boundary
+    #print(f"last image before {images_crop_heights[-1]}")
+    images_crop_heights[-1]["end"]=image_height
+    #print(f"last image after {images_crop_heights[-1]}")
+
+    #remove first part
+    images_crop_heights.pop(0)
+
+    for index, clip in enumerate(images_crop_heights):
+        print(clip)
         print(index)
-        cropped_images.append(image[image_part:image_part+part_height,:])
-        if cropped_images[index].shape[0] < part_height/10:
-            continue
-        cv2.imwrite(f"{str(name)}_{index}.png", cropped_images[index])
+        current_dict = images_crop_heights[index]
+        image_crop = image[current_dict["start"]:current_dict["end"],:]
+        cropped_images.append(image_crop)
+        #cv2.imwrite(f"{name}{index}.png",image_crop)
+
+    print(f"len(images_crop_heigts) {len(images_crop_heights)}")
     return(cropped_images)
 
 #frames_splitter(cv2.imread("Untitled.png"),100)
-smart_splitter(cv2.imread(".//input//71_stitched.png"),"test", 10)
+#smart_splitter(cv2.imread(".//input//71_stitched.png"),"test", 6)
+
