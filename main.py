@@ -22,6 +22,7 @@ Builder.load_string("""
             right_action_items: [["penguin"]]
         MDFloatLayout:
             MDTextField:
+                id: input_path
                 icon_right: 'folder-open-outline'
                 icon_right_color: rgba("#EC407A")
                 hint_text: "Input Path"
@@ -86,7 +87,10 @@ class TestApp(MDApp):
         return sm
     
     def file_chooser(self):
-        filechooser.open_file()
+        filechooser.open_file(on_selection=self.selected)
+
+    def selected(self, selection):
+        print(selection)
 
 if __name__ == '__main__':
     TestApp().run()
