@@ -39,6 +39,7 @@ Builder.load_string("""
 
             MDRectangleFlatButton:
                 text: 'About'
+                line_width: 1.1
                 pos_hint: {"center_x":.5, "y":0.1}
                 size_hint_x: .3
                 on_release:
@@ -46,6 +47,7 @@ Builder.load_string("""
                     root.manager.transition.direction = 'left'
             MDRectangleFlatButton:
                 text: 'Go to settings'
+                line_width: 1.1
                 size_hint_x: .3
                 pos_hint: {"center_x":0.5, "center_y":0.6}
                 on_release:
@@ -60,9 +62,11 @@ Builder.load_string("""
         MDFloatLayout:
             MDRectangleFlatButton:
                 text: 'My settings MDRectangleFlatButton'
+                line_width: 1.1
                 pos_hint: {"center_x":0.5, "center_y":0.6}
             MDRectangleFlatButton:
                 text: 'Back to menu'
+                line_width: 1.1
                 on_release: 
                     root.manager.current = 'menu'
                     root.manager.transition.direction = 'right'
