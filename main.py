@@ -31,12 +31,17 @@ class TestApp(MDApp):
         # Create the screen manager
         self.theme_cls.primary_palette = "Pink"
         self.theme_cls.primary_hue = "400"
-        #self.theme_cls.theme_style = "Dark"
         sm = ScreenManager()
         sm.add_widget(MenuScreen(name='menu'))
         sm.add_widget(SettingsScreen(name='settings'))
 
         return sm
+
+    def setbg(self, checkbox, value):
+        if value:
+            self.theme_cls.theme_style = "Dark"
+        else:
+            self.theme_cls.theme_style = "Light"
 
     def open_repo(self):
         toast('Opening repo',  duration=1)
