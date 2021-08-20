@@ -1,8 +1,8 @@
 #from frames_stitcher import frames_stitcher
 import os, cv2
 import time
-from scripts.smart_splitter import smart_splitter
-from scripts.write_output import write_output
+from smart_splitter import smart_splitter
+from write_output import write_output
 
 #log start time
 start_time = time.perf_counter()

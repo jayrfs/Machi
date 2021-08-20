@@ -1,7 +1,7 @@
 #from frames_stitcher import frames_stitcher
 import os
 import time
-from scripts.frames_stitcher import stitchy_code
+from frames_stitcher import stitchy_code
 
 #log start time
 start_time = time.perf_counter()
