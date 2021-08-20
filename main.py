@@ -2,9 +2,11 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+from kivymd.toast import toast
 from kivy.utils import rgba
+from kivy.clock import Clock
 from plyer import filechooser
-import time
+import webbrowser
 
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
@@ -19,7 +21,8 @@ Builder.load_string("""
             title: "Machi"
             elevation: 12
             type: "top"
-            right_action_items: [["penguin"]]
+            right_action_items: [["penguin", lambda github: app.open_repo()]]
+            
         MDFloatLayout:
             MDTextField:
                 id: input_path
@@ -85,9 +88,13 @@ class TestApp(MDApp):
         sm.add_widget(SettingsScreen(name='settings'))
 
         return sm
+
+    def open_repo(self):
+        toast('Opening repo',  duration=1)
+        Clock.schedule_once(lambda repo: webbrowser.open("https://github.com/jayrfs/Machi"), .5)
     
     def file_chooser(self):
-        filechooser.open_file(on_selection=self.selected)
+        Clock.schedule_once(lambda repo: filechooser.open_file(on_selection=self.selected), .3)
 
     def selected(self, selection):
         print(selection)
