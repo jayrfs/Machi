@@ -1,3 +1,6 @@
+from kivy.config import Config
+Config.set('graphics', 'resizable', False)
+
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -8,70 +11,12 @@ from kivy.clock import Clock
 from plyer import filechooser
 import webbrowser
 
+Window.size = (360, 640)
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
-Window.size = (360, 640)
 
-Builder.load_string("""
-<MenuScreen>:
-    MDBoxLayout:
-        orientation: "vertical"
-        MDToolbar:
-            title: "Machi"
-            elevation: 12
-            type: "top"
-            right_action_items: [["penguin", lambda github: app.open_repo()]]
-            
-        MDFloatLayout:
-            MDTextField:
-                id: input_path
-                icon_right: 'folder-open-outline'
-                icon_right_color: rgba("#EC407A")
-                hint_text: "Input Path"
-                mode: "rectangle"
-                color_mode: "custom"
-                pos_hint: {"center_x":0.5, "center_y":0.9}
-                size_hint_x: .8
-                height: "30dp"
-                on_focus:
-                    app.file_chooser()
-
-            MDRectangleFlatButton:
-                text: 'About'
-                line_width: 1.1
-                pos_hint: {"center_x":.5, "y":0.1}
-                size_hint_x: .3
-                on_release:
-                    root.manager.current = 'settings'
-                    root.manager.transition.direction = 'left'
-            MDRectangleFlatButton:
-                text: 'Go to settings'
-                line_width: 1.1
-                size_hint_x: .3
-                pos_hint: {"center_x":0.5, "center_y":0.6}
-                on_release:
-
-<SettingsScreen>:
-    MDBoxLayout:
-        orientation: "vertical"
-        MDToolbar:
-            title: "Machi"
-            type: "top"
-            right_action_items: [["penguin"]]
-        MDFloatLayout:
-            MDRectangleFlatButton:
-                text: 'My settings MDRectangleFlatButton'
-                line_width: 1.1
-                pos_hint: {"center_x":0.5, "center_y":0.6}
-            MDRectangleFlatButton:
-                text: 'Back to menu'
-                line_width: 1.1
-                on_release: 
-                    root.manager.current = 'menu'
-                    root.manager.transition.direction = 'right'
-                pos_hint: {"center_x":0.5, "center_y":0.3}
-""")
+Builder.load_file(".\\resources\\main.kv")
 
 # Declare both screens
 class MenuScreen(Screen):
