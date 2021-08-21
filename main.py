@@ -52,6 +52,8 @@ class TestApp(MDApp):
 
     def selected(self, selection):
         print(selection)
+        self.ids.yolo = selection
+        return(selection)
 
 if __name__ == '__main__':
     TestApp().run()

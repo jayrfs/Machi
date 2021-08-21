@@ -19,7 +19,7 @@
 
         MDFloatLayout:
             MDTextField:
-                id: input_path
+                id: input_path_box
                 icon_right: 'folder-open-outline'
                 icon_right_color: "#EC407A"
                 hint_text: "Input Path"
@@ -31,8 +31,14 @@
                 on_focus:
                     app.file_chooser()
 
+            MDLabel:
+                id: yolo
+                text: "Test"
+
             MDRectangleFlatButton:
                 text: 'About'
+                font_name: "RobotoBlack"
+                font_style: "Button"
                 line_width: 1.1
                 pos_hint: {"center_x":.5, "y":0.1}
                 size_hint_x: .3
@@ -41,6 +47,8 @@
                     root.manager.transition.direction = 'left'
             MDRectangleFlatButton:
                 text: 'Go to settings'
+                font_name: "RobotoBlack"
+                font_style: "Button"
                 line_width: 1.1
                 size_hint_x: .3
                 pos_hint: {"center_x":0.5, "center_y":0.6}
