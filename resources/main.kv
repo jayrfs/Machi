@@ -17,7 +17,11 @@
                 size_hint: 0.1, None
 
 
-        MDFloatLayout:
+        MDBoxLayout:
+            size_hint_y:0.6
+            MDLabel:
+                text:"Machi"
+                pos_hint: {"center_x":0.5, "center_y":0.2}
             MDTextField:
                 id: input_path_box
                 icon_right: 'folder-open-outline'
@@ -25,35 +29,68 @@
                 hint_text: "Input Path"
                 mode: "rectangle"
                 color_mode: "custom"
-                pos_hint: {"center_x":0.5, "center_y":0.9}
+                pos_hint: {"center_x":0.5, "center_y":0.3}
                 size_hint_x: .8
                 height: "30dp"
                 on_focus:
                     app.file_chooser()
 
-            MDLabel:
-                id: yolo
-                text: "Test"
 
-            MDRectangleFlatButton:
-                text: 'About'
+        MDGridLayout:
+            cols: 2
+            padding: 20
+            spacing: 20
+            MDRectangleFlatIconButton:
+                size_hint_y:1
+                size_hint_x:1
+                icon: 'image-plus'
+                text: 'Add Files'
                 font_name: "RobotoBlack"
                 font_style: "Button"
                 line_width: 1.1
-                pos_hint: {"center_x":.5, "y":0.1}
-                size_hint_x: .3
                 on_release:
                     root.manager.current = 'settings'
                     root.manager.transition.direction = 'left'
-            MDRectangleFlatButton:
-                text: 'Go to settings'
+            MDRectangleFlatIconButton:
+                size_hint_y:1
+                size_hint_x:1
+                text: 'Orientation:\nPortrait'
+                icon: 'phone-rotate-portrait'
                 font_name: "RobotoBlack"
                 font_style: "Button"
                 line_width: 1.1
-                size_hint_x: .3
-                pos_hint: {"center_x":0.5, "center_y":0.6}
-                on_release:
-
+            MDRectangleFlatIconButton:
+                size_hint_y:1
+                size_hint_x:1
+                icon: 'filmstrip'
+                text: 'Stitcher'
+                font_name: "RobotoBlack"
+                font_style: "Button"
+                line_width: 1.1
+            MDRectangleFlatIconButton:
+                size_hint_y:1
+                size_hint_x:1
+                text: 'Smart\nStitcher'
+                icon: 'led-strip-variant'
+                font_name: "RobotoBlack"
+                font_style: "Button"
+                line_width: 1.1
+            MDRectangleFlatIconButton:
+                size_hint_y:1
+                size_hint_x:1
+                text: 'Splitter'
+                icon: 'content-cut'
+                font_name: "RobotoBlack"
+                font_style: "Button"
+                line_width: 1.1
+            MDRectangleFlatIconButton:
+                size_hint_y:1
+                size_hint_x:1
+                icon: 'scissors-cutting'
+                text: 'Smart\nSplitter'
+                font_name: "RobotoBlack"
+                font_style: "Button"
+                line_width: 1.1
 <SettingsScreen>:
     MDBoxLayout:
         orientation: "vertical"
