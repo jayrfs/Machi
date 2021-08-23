@@ -12,6 +12,9 @@ from plyer import filechooser
 import webbrowser
 import configparser
 
+from scripts.smart_splitter import smart_splitter
+from scripts.get_input import get_input
+
 Window.size = (360, 640)
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
@@ -27,6 +30,9 @@ class SettingsScreen(Screen):
     pass
 
 class TestApp(MDApp):
+
+    input_selection=[]
+    input_images=[]
 
     def build(self):
         # Create the screen manager
@@ -52,8 +58,14 @@ class TestApp(MDApp):
         Clock.schedule_once(lambda repo: filechooser.open_file(on_selection=self.selected, multiple=True), .3)
 
     def selected(self, selection):
-        print(selection)
-        return(selection)
+        self.input_selection = selection
+        print(self.input_selection)
+        self.input_images = get_input(self.input_selection)
+        print(len(self.input_images))
+        return()
+
+    def call_splitter(self):
+        smart_splitter(self.input_images[0])
 
 if __name__ == '__main__':
     TestApp().run()
