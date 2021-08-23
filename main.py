@@ -49,11 +49,10 @@ class TestApp(MDApp):
         Clock.schedule_once(lambda repo: webbrowser.open("https://github.com/jayrfs/Machi"), .5)
     
     def file_chooser(self):
-        Clock.schedule_once(lambda repo: filechooser.open_file(on_selection=self.selected), .3)
+        Clock.schedule_once(lambda repo: filechooser.open_file(on_selection=self.selected, multiple=True), .3)
 
     def selected(self, selection):
         print(selection)
-        self.ids.yolo = selection
         return(selection)
 
 if __name__ == '__main__':
