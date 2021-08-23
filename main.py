@@ -9,8 +9,8 @@ from kivymd.toast import toast
 from kivy.utils import rgba
 from kivy.clock import Clock
 from plyer import filechooser
+from kivy.storage.jsonstore import JsonStore
 import webbrowser
-import configparser
 
 from scripts.smart_splitter import smart_splitter
 from scripts.get_input import get_input
@@ -29,15 +29,37 @@ class MenuScreen(Screen):
 class SettingsScreen(Screen):
     pass
 
-class TestApp(MDApp):
+class MachiApp(MDApp):
 
     input_selection=[]
     input_images=[]
+    store = JsonStore('config.json')
+    if store.exists('configstuff'):
+        pass
+    else:
+        store.put('configstuff',theme='dark')
+    if store.get('configstuff')['theme']=='dark':
+        btheme = False
+    else:
+        btheme = True
+    print(f"btheme = {btheme}")
+
+    def on_start(self):
+        #bad code, replace with set_bg later
+        if self.store.get('configstuff')['theme']=='light':
+            self.theme_cls.theme_style = "Light"
+        elif self.store.get('configstuff')['theme']=='dark':
+            self.theme_cls.theme_style = "Dark"
 
     def build(self):
+        yolo="hahaha"
         # Create the screen manager
         self.theme_cls.primary_palette = "Pink"
         self.theme_cls.primary_hue = "400"
+
+        #load config stuff
+
+
         sm = ScreenManager()
         sm.add_widget(MenuScreen(name='menu'))
         sm.add_widget(SettingsScreen(name='settings'))
@@ -46,9 +68,13 @@ class TestApp(MDApp):
 
     def setbg(self, checkbox, value):
         if value:
-            self.theme_cls.theme_style = "Dark"
+            self.store.put('configstuff',theme='light')
         else:
+            self.store.put('configstuff',theme='dark')
+        if self.store.get('configstuff')['theme']=='light':
             self.theme_cls.theme_style = "Light"
+        elif self.store.get('configstuff')['theme']=='dark':
+            self.theme_cls.theme_style = "Dark"
 
     def open_repo(self):
         toast('Opening repo',  duration=1)
@@ -67,4 +93,4 @@ class TestApp(MDApp):
         smart_splitter(self.input_images[0])
 
 if __name__ == '__main__':
-    TestApp().run()
+    MachiApp().run()

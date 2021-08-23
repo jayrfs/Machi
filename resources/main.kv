@@ -7,7 +7,8 @@
             type: "top"
             left_action_items: [["penguin", lambda github: app.open_repo()]]
             MDSwitch:
-                key: "switch"
+                id: "switch"
+                active: app.btheme
                 on_active: app.setbg(*args)
                 size_hint: None, None
                 pos_hint: {'x': .1, 'center_y': .5}
@@ -105,7 +106,7 @@
             MDRectangleFlatIconButton:
                 size_hint_y:1
                 size_hint_x:1
-                text: 'About'
+                text: 'Help'
                 icon: 'information'
                 font_name: "RobotoBlack"
                 font_style: "Button"
