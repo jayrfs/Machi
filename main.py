@@ -60,8 +60,7 @@ class TestApp(MDApp):
     def selected(self, selection):
         self.input_selection = selection
         print(self.input_selection)
-        self.input_images = get_input(self.input_selection)
-        print(len(self.input_images))
+        get_input(self.input_selection)
         return()
 
     def call_splitter(self):
