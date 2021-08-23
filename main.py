@@ -10,10 +10,12 @@ from kivy.utils import rgba
 from kivy.clock import Clock
 from plyer import filechooser
 from kivy.storage.jsonstore import JsonStore
-import webbrowser
+import webbrowser, cv2
 
 from scripts.smart_splitter import smart_splitter
 from scripts.get_input import get_input
+from scripts.frames_stitcher import stitchy_code
+from scripts.write_output import write_output
 
 Window.size = (360, 640)
 # Create both screens. Please note the root.manager.current: this is how
@@ -90,7 +92,14 @@ class MachiApp(MDApp):
         return()
 
     def call_splitter(self):
-        smart_splitter(self.input_images[0])
+        print(f"tbs {self.input_selection[0]}")
+        to_be_split = cv2.imread(self.input_selection[0])
+        after_split = smart_splitter(to_be_split)
+        write_output(after_split)
+
+    def call_stitcher(self):
+        finelimages = stitchy_code(self)
+        write_output(finelimages)
 
 if __name__ == '__main__':
     MachiApp().run()

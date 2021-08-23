@@ -9,14 +9,17 @@ if "output" not in listFiles:
     os.mkdir("output")
 
 #add paths
-inputPath = ".//input//"
-outputPath = ".//output//"
-extension = ".png"
 
 def write_output(image, filename="image"):
+    inputPath = ".//input//"
+    outputPath = ".//output//"
+    extension = ".png"
+
     if isinstance(image, np.ndarray)==False:
+        print(len(image))
         for index, stuff in enumerate(image):
-            cv2.imwrite(f"{outputPath}{filename}_{index}_{extension}",stuff)
+            print(index)
+            #cv2.imwrite(f"{outputPath}{filename}_{index}_{extension}",stuff)
     else:
         cv2.imwrite(f"{outputPath}{filename}{extension}",image)
     return

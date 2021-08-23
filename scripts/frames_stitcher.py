@@ -22,13 +22,14 @@ extension = ".png"
 
 def stitchy_code(chapter_number,buffer_size=300):
 
-    numberFiles = os.listdir(f"{inputPath}{chapter_number}_frames/")
-    prev_image = long_image = cv2.imread(f"{inputPath}{chapter_number}_frames/0.jpg")
+    numberFiles = os.listdir(f"{inputPath}")
+    list_of_files_in_input = os.listdir(inputPath)
+    prev_image = long_image = cv2.imread(f"{list_of_files_in_input[0]}")
     count = 0
     
     with alive_bar(len(numberFiles),title=f"Stitching chapter {chapter_number}...") as bar:
         for img_num in range(len(numberFiles)):
-            new_image = cv2.imread(f'{inputPath}{chapter_number}_frames/{img_num}.jpg')
+            new_image = cv2.imread(f'{inputPath}{img_num}.jpg')
             prev_image_cropped = prev_image[-buffer_size:-1,:]
             # cv2.imshow('output', prev_image_cropped)
             # cv2.waitKey(0)
@@ -53,7 +54,7 @@ def stitchy_code(chapter_number,buffer_size=300):
             print(count,end=" ")'''
 
     #assign old filename
-    filename = f"{outputPath}{chapter_number}_stitched"
+    filename = f"{outputPath}_stitched"
         
     #call rename function and write
     #rename_old_files(filename)
