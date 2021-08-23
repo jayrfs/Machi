@@ -18,10 +18,14 @@
 
 
         MDBoxLayout:
+            orientation:'vertical'
             size_hint_y:0.6
+            padding: 20
+            spacing: 20
             MDLabel:
                 text:"Machi"
-                pos_hint: {"center_x":0.5, "center_y":0.2}
+                halign: "center"
+                font_style: 'H1'
             MDTextField:
                 id: input_path_box
                 icon_right: 'folder-open-outline'
