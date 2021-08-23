@@ -16,6 +16,7 @@ from scripts.smart_splitter import smart_splitter
 from scripts.get_input import get_input
 from scripts.frames_stitcher import stitchy_code
 from scripts.write_output import write_output
+from scripts.smart_split_gui_loop import smart_split_gui_loop
 
 Window.size = (360, 640)
 # Create both screens. Please note the root.manager.current: this is how
@@ -92,10 +93,8 @@ class MachiApp(MDApp):
         return()
 
     def call_splitter(self):
-        print(f"tbs {self.input_selection[0]}")
-        to_be_split = cv2.imread(self.input_selection[0])
-        after_split = smart_splitter(to_be_split)
-        write_output(after_split)
+        smart_split_gui_loop(0)
+        
 
     def call_stitcher(self):
         finelimages = stitchy_code(self)

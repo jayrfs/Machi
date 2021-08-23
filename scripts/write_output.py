@@ -16,10 +16,10 @@ def write_output(image, filename="image"):
     extension = ".png"
 
     if isinstance(image, np.ndarray)==False:
-        print(len(image))
+        print(f"len {len(image)}")
         for index, stuff in enumerate(image):
             print(index)
-            #cv2.imwrite(f"{outputPath}{filename}_{index}_{extension}",stuff)
+            cv2.imwrite(f"{outputPath}{filename}_{index}_{extension}",stuff)
     else:
         cv2.imwrite(f"{outputPath}{filename}{extension}",image)
     return
