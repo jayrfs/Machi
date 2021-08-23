@@ -10,6 +10,7 @@ from kivy.utils import rgba
 from kivy.clock import Clock
 from plyer import filechooser
 import webbrowser
+import configparser
 
 Window.size = (360, 640)
 # Create both screens. Please note the root.manager.current: this is how
