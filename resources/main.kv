@@ -36,8 +36,6 @@
                 pos_hint: {"center_x":0.5, "center_y":0.3}
                 size_hint_x: .8
                 height: "30dp"
-                on_focus:
-                    app.file_chooser()
 
 
         MDGridLayout:
@@ -53,13 +51,12 @@
                 font_style: "Button"
                 line_width: 1.1
                 on_release:
-                    root.manager.current = 'settings'
-                    root.manager.transition.direction = 'left'
+                    app.file_chooser()
             MDRectangleFlatIconButton:
                 size_hint_y:1
                 size_hint_x:1
-                text: 'Orientation:\nPortrait'
-                icon: 'phone-rotate-portrait'
+                text: 'Stitch\nDirection:\nDown'
+                icon: 'arrow-down-box'
                 font_name: "RobotoBlack"
                 font_style: "Button"
                 line_width: 1.1
@@ -95,6 +92,25 @@
                 font_name: "RobotoBlack"
                 font_style: "Button"
                 line_width: 1.1
+            MDRectangleFlatIconButton:
+                size_hint_y:1
+                size_hint_x:1
+                text: 'Copy output\n to input'
+                icon: 'content-copy'
+                font_name: "RobotoBlack"
+                font_style: "Button"
+                line_width: 1.1
+            MDRectangleFlatIconButton:
+                size_hint_y:1
+                size_hint_x:1
+                text: 'About'
+                icon: 'information'
+                font_name: "RobotoBlack"
+                font_style: "Button"
+                line_width: 1.1
+                on_release:
+                    root.manager.current = 'settings'
+                    root.manager.transition.direction = 'left'
 <SettingsScreen>:
     MDBoxLayout:
         orientation: "vertical"
