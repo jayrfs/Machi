@@ -33,8 +33,13 @@ class MachiApp(MDApp):
     store = JsonStore('config.json')
 
     def yoda(self):
-        my_label = self.root.ids.bish
-        print(self.root.ids)
+        input_lister_text = self.root.ids.input_lister_text
+        new_text = ""
+        for i in self.input_selection:
+            new_text += i
+            new_text += "\n"
+        input_lister_text.text = new_text
+        print(new_text)
 
     def on_start(self):
         self.set_theme_on_start()
@@ -78,6 +83,7 @@ class MachiApp(MDApp):
         self.input_selection = selection
         print(self.input_selection)
         get_input(self.input_selection)
+        self.yoda()
         return()
 
     def call_splitter(self):

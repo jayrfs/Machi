@@ -1,15 +1,6 @@
 MDBoxLayout:
     orientation: "vertical"
 
-    MDLabel:
-        text: "testing bish"
-        id: bish
-
-    MDRectangleFlatButton:
-        test:"hihih"
-        on_release:
-            app.yoda()
-
     MDToolbar:
         title: "Machi"
         elevation: 12
@@ -33,10 +24,13 @@ MDBoxLayout:
                         text:"Add Input"
                         halign: "center"
                         font_style: 'H3'
-                    MDLabel:
-                        text:"Add Input"
-                        id: joey
-                        halign: "center"
+                    ScrollView:
+                        size_hint_x:1
+                        size_hint_y:None
+                        MDLabel:
+                            text:"Add Input"
+                            id: input_lister_text
+                            halign: "center"
                 MDGridLayout:
                     cols: 2
                     padding: 20
