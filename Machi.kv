@@ -21,16 +21,20 @@ MDBoxLayout:
                     padding: 20
                     spacing: 30
                     MDLabel:
+                        size_hint_y:0.3
                         text:"Add Input"
                         halign: "center"
                         font_style: 'H3'
                     ScrollView:
-                        size_hint_x:1
-                        size_hint_y:None
+                        do_scroll_x: False
+                        do_scroll_y: True
                         MDLabel:
-                            text:"Add Input"
+                            text:""
                             id: input_lister_text
-                            halign: "center"
+                            halign: "left"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            text_size: self.width, None
                 MDGridLayout:
                     cols: 2
                     padding: 20
