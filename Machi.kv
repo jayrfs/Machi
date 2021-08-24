@@ -1,4 +1,7 @@
 MDBoxLayout:
+
+    joey: joey
+
     orientation: "vertical"
     MDToolbar:
         title: "Machi"
@@ -23,12 +26,10 @@ MDBoxLayout:
                         text:"Add Input"
                         halign: "center"
                         font_style: 'H3'
-                    ScrollView:
-                        do_scroll_x: False
-                        do_scroll_y: True
-                        MDLabel:
-                            text:"Add Input"
-                            halign: "center"
+                    MDLabel:
+                        text:"Add Input"
+                        id: joey
+                        halign: "center"
                 MDGridLayout:
                     cols: 2
                     padding: 20
@@ -134,6 +135,8 @@ MDBoxLayout:
                         font_name: "RobotoBlack"
                         font_style: "Button"
                         line_width: 1.1
+                        on_release:
+                            app.call_smart_stitcher()
                     
                     MDRectangleFlatIconButton:
                         size_hint_y:1

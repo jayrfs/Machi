@@ -17,6 +17,7 @@ from scripts.get_input import get_input
 from scripts.frames_stitcher import stitchy_code
 from scripts.write_output import write_output
 from scripts.smart_split_gui_loop import smart_split_gui_loop
+from scripts.smart_stitch_gui_loop import smart_stitch_gui_loop
 
 Window.size = (360, 640)
 # Create both screens. Please note the root.manager.current: this is how
@@ -78,6 +79,8 @@ class MachiApp(MDApp):
     def call_splitter(self):
         smart_split_gui_loop(0)
         
+    def call_smart_stitcher(self):
+        smart_stitch_gui_loop(0)
 
     def call_stitcher(self):
         finelimages = stitchy_code(self)

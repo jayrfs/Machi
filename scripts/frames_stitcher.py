@@ -20,7 +20,7 @@ extension = ".png"
 #chapter = int(input(f"Choose chapter to stitch: {os.listdir(inputPath)} :"))
 
 
-def stitchy_code(chapter_number,buffer_size=300):
+def stitchy_code(chapter_number=0,buffer_size=300):
 
     numberFiles = os.listdir(f"{inputPath}")
     list_of_files_in_input = os.listdir(inputPath)
