@@ -9,8 +9,9 @@ MDBoxLayout:
     MDBottomNavigation:
 
         MDBottomNavigationItem:
-            text:"Input"
-            name:'input_screen'
+            text:"Import"
+            icon:'import'
+            name:'import_screen'
             MDBoxLayout:
                 orientation:'vertical'
                 MDBoxLayout:
@@ -19,7 +20,7 @@ MDBoxLayout:
                     padding: 20
                     spacing: 30
                     MDLabel:
-                        text:"Add Input"
+                        text:"Import"
                         halign: "center"
                         font_style: 'H3'
                     ScrollView:
@@ -77,8 +78,9 @@ MDBoxLayout:
                         on_release:
                             app.flush_output()
         MDBottomNavigationItem:
-            text:"s1"
-            name:"s1"
+            text:"Stitch"
+            name:"stitch_sceen"
+            icon:'filmstrip'
             MDBoxLayout:
                 orientation:'vertical'
                 MDBoxLayout:
@@ -181,8 +183,9 @@ MDBoxLayout:
                         line_width: 1.1
 
         MDBottomNavigationItem:
-            text:"s2"
-            name:"s2"
+            text:"Split"
+            name:"split_screen"
+            icon:'scissors-cutting'
             MDBoxLayout:
                 orientation: "vertical"
                 MDFloatLayout:
@@ -199,8 +202,9 @@ MDBoxLayout:
                         pos_hint: {"center_x":0.5, "center_y":0.3}
 
         MDBottomNavigationItem:
-            text:"Theme"
-            name:'theme_screen'
+            text:"Options"
+            name:'options_screen'
+            icon:'tune'
             MDFloatLayout:
                 MDLabel:
                     text:"hehe"
