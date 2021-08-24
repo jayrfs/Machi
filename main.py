@@ -14,6 +14,8 @@ from kivymd.toast import toast
 
 from kivymd.uix.list import OneLineListItem
 
+from natsort import natsorted, ns
+
 from scripts.smart_splitter import smart_splitter
 from scripts.get_input import get_input
 from scripts.frames_stitcher import stitchy_code
@@ -36,7 +38,9 @@ class MachiApp(MDApp):
 
     def yoda(self):
         self.files_in_input_folder = os.listdir(".//input//")
-        for i in self.files_in_input_folder:
+        files_in_input_folder_sorted = []
+        files_in_input_folder_sorted = natsorted(self.files_in_input_folder, alg=ns.IGNORECASE)
+        for i in files_in_input_folder_sorted:
             self.root.ids.input_lister_text.add_widget(
                 OneLineListItem(text=f"{i}")
             )
