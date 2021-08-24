@@ -12,6 +12,8 @@ import webbrowser, cv2, os
 from kivymd.uix.picker import MDThemePicker
 from kivymd.toast import toast
 
+from kivymd.uix.list import OneLineListItem
+
 from scripts.smart_splitter import smart_splitter
 from scripts.get_input import get_input
 from scripts.frames_stitcher import stitchy_code
@@ -29,20 +31,20 @@ class MachiApp(MDApp):
 
     local_theme = {}
     input_selection=[]
-    input_images=[]
+    files_in_input_folder=[]
     store = JsonStore('config.json')
 
     def yoda(self):
-        input_lister_text = self.root.ids.input_lister_text
-        new_text = ""
-        for i in self.input_selection:
-            new_text += i
-            new_text += "\n"
-        input_lister_text.text = new_text
-        print(new_text)
+        self.files_in_input_folder = os.listdir(".//input//")
+        for i in self.files_in_input_folder:
+            self.root.ids.input_lister_text.add_widget(
+                OneLineListItem(text=f"{i}")
+            )
+        
 
     def on_start(self):
         self.set_theme_on_start()
+        self.yoda()
 
     def build(self):
         yolo="hahaha"
