@@ -10,6 +10,7 @@ from plyer import filechooser
 from kivy.storage.jsonstore import JsonStore
 import webbrowser, cv2
 from kivymd.uix.picker import MDThemePicker
+from kivymd.toast import toast
 
 from scripts.smart_splitter import smart_splitter
 from scripts.get_input import get_input

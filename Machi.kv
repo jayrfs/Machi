@@ -7,33 +7,71 @@ MDBoxLayout:
         right_action_items: [["penguin", lambda github: app.open_repo()]]
 
     MDBottomNavigation:
+
         MDBottomNavigationItem:
             text:"Input"
-            name:"Input"
+            name:'input_screen'
             MDBoxLayout:
                 orientation:'vertical'
-                size_hint_y:0.6
-                padding: 20
-                spacing: 30
-                MDLabel:
-                    text:"Machi"
-                    halign: "center"
-                    font_style: 'H1'
-                MDTextField:
-                    id: output-name-box
-                    icon_right: 'rename-box'
-                    icon_right_color: "#EC407A"
-                    hint_text: "Output prefix"
-                    helper_text: "Default is Machi-"
-                    helper_text_mode: "persistent"
-                    mode: "rectangle"
-                    color_mode: "custom"
-                    pos_hint: {"center_x":0.5, "center_y":0.1}
-                    size_hint_x: .92
-                    on_text_validate:
-                        app.set_prefix(*args)
-            
-
+                MDBoxLayout:
+                    orientation:'vertical'
+                    size_hint_y:0.6
+                    padding: 20
+                    spacing: 30
+                    MDLabel:
+                        text:"Add Input"
+                        halign: "center"
+                        font_style: 'H3'
+                    ScrollView:
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        MDLabel:
+                            text:"Add Input"
+                            halign: "center"
+                MDGridLayout:
+                    cols: 2
+                    padding: 20
+                    spacing: 20
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        icon: 'image-plus'
+                        text: 'Add Files'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                        on_release:
+                            app.file_chooser()
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Copy output\n to input'
+                        icon: 'arrow-down-box'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                        on_release:
+                            app.output_to_input()
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Clear\ninput\nfolder'
+                        icon: 'arrow-down-box'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                        on_release:
+                            app.flush_input
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Clear\noutput\nfolder'
+                        icon: 'arrow-down-box'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                        on_release:
+                            app.flush_output
         MDBottomNavigationItem:
             text:"s1"
             name:"s1"
