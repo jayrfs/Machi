@@ -8,7 +8,7 @@ from kivy.utils import rgba
 from kivy.clock import Clock
 from plyer import filechooser
 from kivy.storage.jsonstore import JsonStore
-import webbrowser, cv2
+import webbrowser, cv2, os
 from kivymd.uix.picker import MDThemePicker
 from kivymd.toast import toast
 
@@ -47,6 +47,27 @@ class MachiApp(MDApp):
     
     def file_chooser(self):
         Clock.schedule_once(lambda repo: filechooser.open_file(on_selection=self.selected, multiple=True), .3)
+
+    def flush_input(self):
+        self.input_selection = []
+        for ffile in os.listdir('.//input//'):
+            print(f"remove .//input//{ffile}")
+            os.remove(f".//input//{ffile}")
+        return()
+
+    def flush_output(self):
+        for ffile in os.listdir('.//output//'):
+            print(f"remove .//output//{ffile}")
+            os.remove(f".//output//{ffile}")
+        return()
+
+    def output_to_input(self):
+        self.input_selection = []
+        for ffile in os.listdir('.//output//'):
+            self.input_selection.append(f".//output//{ffile}")
+            print(f"copy .//output//{ffile}")
+            get_input(self.input_selection)
+        return()
 
     def selected(self, selection):
         self.input_selection = selection

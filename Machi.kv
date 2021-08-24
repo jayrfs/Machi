@@ -61,7 +61,7 @@ MDBoxLayout:
                         font_style: "Button"
                         line_width: 1.1
                         on_release:
-                            app.flush_input
+                            app.flush_input()
                     MDRectangleFlatIconButton:
                         size_hint_y:1
                         size_hint_x:1
@@ -71,7 +71,7 @@ MDBoxLayout:
                         font_style: "Button"
                         line_width: 1.1
                         on_release:
-                            app.flush_output
+                            app.flush_output()
         MDBottomNavigationItem:
             text:"s1"
             name:"s1"
