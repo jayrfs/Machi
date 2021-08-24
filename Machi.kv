@@ -16,11 +16,11 @@ MDBoxLayout:
                 orientation:'vertical'
                 MDBoxLayout:
                     orientation:'vertical'
-                    size_hint_y:0.6
+                    size_hint_y:1.6
                     padding: 20
                     spacing: 30
                     MDLabel:
-                        text:"Import"
+                        text:"Add Input"
                         halign: "center"
                         font_style: 'H3'
                     ScrollView:
@@ -33,10 +33,6 @@ MDBoxLayout:
                     cols: 2
                     padding: 20
                     spacing: 20
-                    MDLabel:
-                        text: ""
-                    MDLabel:
-                        text: ""
                     MDRectangleFlatIconButton:
                         size_hint_y:.6
                         size_hint_x:1
@@ -85,13 +81,13 @@ MDBoxLayout:
                 orientation:'vertical'
                 MDBoxLayout:
                     orientation:'vertical'
-                    size_hint_y:0.6
+                    size_hint_y:1.6
                     padding: 20
                     spacing: 30
                     MDLabel:
-                        text:"Machi"
+                        text:"Stitch"
                         halign: "center"
-                        font_style: 'H1'
+                        font_style: 'H3'
                     MDTextField:
                         id: output-name-box
                         icon_right: 'rename-box'
@@ -110,16 +106,7 @@ MDBoxLayout:
                     cols: 2
                     padding: 20
                     spacing: 20
-                    MDRectangleFlatIconButton:
-                        size_hint_y:1
-                        size_hint_x:1
-                        icon: 'image-plus'
-                        text: 'Add Files'
-                        font_name: "RobotoBlack"
-                        font_style: "Button"
-                        line_width: 1.1
-                        on_release:
-                            app.file_chooser()
+                    
                     MDRectangleFlatIconButton:
                         size_hint_y:1
                         size_hint_x:1
@@ -147,32 +134,7 @@ MDBoxLayout:
                         font_name: "RobotoBlack"
                         font_style: "Button"
                         line_width: 1.1
-                    MDRectangleFlatIconButton:
-                        size_hint_y:1
-                        size_hint_x:1
-                        text: 'Splitter'
-                        icon: 'content-cut'
-                        font_name: "RobotoBlack"
-                        font_style: "Button"
-                        line_width: 1.1
-                    MDRectangleFlatIconButton:
-                        size_hint_y:1
-                        size_hint_x:1
-                        icon: 'scissors-cutting'
-                        text: 'Smart\nSplitter'
-                        font_name: "RobotoBlack"
-                        font_style: "Button"
-                        line_width: 1.1
-                        on_release:
-                            app.call_splitter()
-                    MDRectangleFlatIconButton:
-                        size_hint_y:1
-                        size_hint_x:1
-                        text: 'Copy output\n to input'
-                        icon: 'content-copy'
-                        font_name: "RobotoBlack"
-                        font_style: "Button"
-                        line_width: 1.1
+                    
                     MDRectangleFlatIconButton:
                         size_hint_y:1
                         size_hint_x:1
@@ -187,19 +149,72 @@ MDBoxLayout:
             name:"split_screen"
             icon:'scissors-cutting'
             MDBoxLayout:
-                orientation: "vertical"
-                MDFloatLayout:
-                    MDRectangleFlatButton:
-                        text: 'My settings MDRectangleFlatButton'
+                orientation:'vertical'
+                MDBoxLayout:
+                    orientation:'vertical'
+                    size_hint_y:1.6
+                    padding: 20
+                    spacing: 30
+                    MDLabel:
+                        text:"Split"
+                        halign: "center"
+                        font_style: 'H3'
+                    MDTextField:
+                        id: output-name-box
+                        icon_right: 'rename-box'
+                        icon_right_color: "#EC407A"
+                        hint_text: "Output prefix"
+                        helper_text: "Default is Machi-"
+                        helper_text_mode: "persistent"
+                        mode: "rectangle"
+                        color_mode: "custom"
+                        pos_hint: {"center_x":0.5, "center_y":0.1}
+                        size_hint_x: .92
+                        on_text_validate:
+                            app.set_prefix(*args)
+
+                MDGridLayout:
+                    cols: 2
+                    padding: 20
+                    spacing: 20
+                    
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Split\nDirection:\nDown'
+                        icon: 'arrow-down-box'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
                         line_width: 1.1
-                        pos_hint: {"center_x":0.5, "center_y":0.6}
-                    MDRectangleFlatButton:
-                        text: 'Back to menu'
+                            
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Splitter'
+                        icon: 'content-cut'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
                         line_width: 1.1
-                        on_release: 
-                            root.manager.current = 'menu'
-                            root.manager.transition.direction = 'right'
-                        pos_hint: {"center_x":0.5, "center_y":0.3}
+
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        icon: 'scissors-cutting'
+                        text: 'Smart\nSplitter'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                        on_release:
+                            app.call_splitter()
+                    
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Help'
+                        icon: 'information'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
 
         MDBottomNavigationItem:
             text:"Options"
