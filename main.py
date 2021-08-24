@@ -9,6 +9,7 @@ from kivy.clock import Clock
 from plyer import filechooser
 from kivy.storage.jsonstore import JsonStore
 import webbrowser, cv2
+from kivymd.uix.picker import MDThemePicker
 
 from scripts.smart_splitter import smart_splitter
 from scripts.get_input import get_input
@@ -24,25 +25,13 @@ Window.size = (360, 640)
 # Declare both screens
 class MachiApp(MDApp):
 
+    local_theme = {}
     input_selection=[]
     input_images=[]
     store = JsonStore('config.json')
-    if store.exists('configstuff'):
-        pass
-    else:
-        store.put('configstuff',theme='dark',default_prefix='Machi-')
-    if store.get('configstuff')['theme']=='dark':
-        btheme = False
-    else:
-        btheme = True
-    output_prefix = store.get('configstuff')['default_prefix']
 
     def on_start(self):
-        #bad code, replace with set_bg later
-        if self.store.get('configstuff')['theme']=='light':
-            self.theme_cls.theme_style = "Light"
-        elif self.store.get('configstuff')['theme']=='dark':
-            self.theme_cls.theme_style = "Dark"
+        self.set_theme_on_start()
 
     def build(self):
         yolo="hahaha"
@@ -50,16 +39,6 @@ class MachiApp(MDApp):
         self.theme_cls.primary_palette = "Pink"
         self.theme_cls.primary_hue = "400"
         pass
-
-    def setbg(self, checkbox, value):
-        if value:
-            self.store.put('configstuff',theme='light')
-        else:
-            self.store.put('configstuff',theme='dark')
-        if self.store.get('configstuff')['theme']=='light':
-            self.theme_cls.theme_style = "Light"
-        elif self.store.get('configstuff')['theme']=='dark':
-            self.theme_cls.theme_style = "Dark"
 
     def open_repo(self):
         toast('Opening repo',  duration=1)
@@ -85,6 +64,26 @@ class MachiApp(MDApp):
     def set_prefix(self, text):
         text = self.root.get_screen('menu').ids.output-name-box.text
         print(text)
+
+    def show_theme_picker(self):
+        theme_dialog = MDThemePicker()
+        theme_dialog.open()
+        pass
+
+    def set_theme_on_start(self):
+        self.local_theme=self.store.get('theme')['local_theme']
+        self.theme_cls.theme_style = self.local_theme['self.theme_cls.theme_style']
+        self.theme_cls.primary_palette = self.local_theme['self.theme_cls.primary_palette']
+        self.theme_cls.accent_palette = self.local_theme['self.theme_cls.accent_palette']
+        pass
+
+    def on_stop(self):
+        self.local_theme['self.theme_cls.theme_style'] = str(self.theme_cls.theme_style)
+        self.local_theme['self.theme_cls.primary_palette'] = str(self.theme_cls.primary_palette)
+        self.local_theme['self.theme_cls.accent_palette'] = str(self.theme_cls.accent_palette)
+        self.store.put('theme',local_theme = self.local_theme)
+        return
+
 
 if __name__ == '__main__':
     MachiApp().run()

@@ -1,26 +1,15 @@
-MDBottomNavigation:
-    MDBottomNavigationItem:
-        text:"s1"
-        name:"s1"
-        MDBoxLayout:
-            orientation: "vertical"
-            MDToolbar:
-                title: "Machi"
-                elevation: 12
-                type: "top"
-                left_action_items: [["penguin", lambda github: app.open_repo()]]
-                MDSwitch:
-                    id: "switch"
-                    active: app.btheme
-                    on_active: app.setbg(*args)
-                    size_hint: None, None
-                    pos_hint: {'x': .1, 'center_y': .5}
-                    thumb_color: "#EC407A"
-                MDLabel:
-                    text:""
-                    size_hint: 0.1, None
+MDBoxLayout:
+    orientation: "vertical"
+    MDToolbar:
+        title: "Machi"
+        elevation: 12
+        type: "top"
+        right_action_items: [["penguin", lambda github: app.open_repo()]]
 
-
+    MDBottomNavigation:
+        MDBottomNavigationItem:
+            text:"Input"
+            name:"Input"
             MDBoxLayout:
                 orientation:'vertical'
                 size_hint_y:0.6
@@ -43,103 +32,142 @@ MDBottomNavigation:
                     size_hint_x: .92
                     on_text_validate:
                         app.set_prefix(*args)
+            
 
-            MDGridLayout:
-                cols: 2
-                padding: 20
-                spacing: 20
-                MDRectangleFlatIconButton:
-                    size_hint_y:1
-                    size_hint_x:1
-                    icon: 'image-plus'
-                    text: 'Add Files'
-                    font_name: "RobotoBlack"
-                    font_style: "Button"
-                    line_width: 1.1
-                    on_release:
-                        app.file_chooser()
-                MDRectangleFlatIconButton:
-                    size_hint_y:1
-                    size_hint_x:1
-                    text: 'Stitch\nDirection:\nDown'
-                    icon: 'arrow-down-box'
-                    font_name: "RobotoBlack"
-                    font_style: "Button"
-                    line_width: 1.1
-                MDRectangleFlatIconButton:
-                    size_hint_y:1
-                    size_hint_x:1
-                    icon: 'filmstrip'
-                    text: 'Stitcher'
-                    font_name: "RobotoBlack"
-                    font_style: "Button"
-                    line_width: 1.1
-                    on_release:
-                        app.call_stitcher()
-                        
-                MDRectangleFlatIconButton:
-                    size_hint_y:1
-                    size_hint_x:1
-                    text: 'Smart\nStitcher'
-                    icon: 'led-strip-variant'
-                    font_name: "RobotoBlack"
-                    font_style: "Button"
-                    line_width: 1.1
-                MDRectangleFlatIconButton:
-                    size_hint_y:1
-                    size_hint_x:1
-                    text: 'Splitter'
-                    icon: 'content-cut'
-                    font_name: "RobotoBlack"
-                    font_style: "Button"
-                    line_width: 1.1
-                MDRectangleFlatIconButton:
-                    size_hint_y:1
-                    size_hint_x:1
-                    icon: 'scissors-cutting'
-                    text: 'Smart\nSplitter'
-                    font_name: "RobotoBlack"
-                    font_style: "Button"
-                    line_width: 1.1
-                    on_release:
-                        app.call_splitter()
-                MDRectangleFlatIconButton:
-                    size_hint_y:1
-                    size_hint_x:1
-                    text: 'Copy output\n to input'
-                    icon: 'content-copy'
-                    font_name: "RobotoBlack"
-                    font_style: "Button"
-                    line_width: 1.1
-                MDRectangleFlatIconButton:
-                    size_hint_y:1
-                    size_hint_x:1
-                    text: 'Help'
-                    icon: 'information'
-                    font_name: "RobotoBlack"
-                    font_style: "Button"
-                    line_width: 1.1
-                    on_release:
-                        root.manager.current = 'settings'
-                        root.manager.transition.direction = 'left'
-    MDBottomNavigationItem:
-        text:"s2"
-        name:"s2"
-        MDBoxLayout:
-            orientation: "vertical"
-            MDToolbar:
-                title: "Machi"
-                type: "top"
-                right_action_items: [["penguin"]]
+        MDBottomNavigationItem:
+            text:"s1"
+            name:"s1"
+            MDBoxLayout:
+                orientation:'vertical'
+                MDBoxLayout:
+                    orientation:'vertical'
+                    size_hint_y:0.6
+                    padding: 20
+                    spacing: 30
+                    MDLabel:
+                        text:"Machi"
+                        halign: "center"
+                        font_style: 'H1'
+                    MDTextField:
+                        id: output-name-box
+                        icon_right: 'rename-box'
+                        icon_right_color: "#EC407A"
+                        hint_text: "Output prefix"
+                        helper_text: "Default is Machi-"
+                        helper_text_mode: "persistent"
+                        mode: "rectangle"
+                        color_mode: "custom"
+                        pos_hint: {"center_x":0.5, "center_y":0.1}
+                        size_hint_x: .92
+                        on_text_validate:
+                            app.set_prefix(*args)
+
+                MDGridLayout:
+                    cols: 2
+                    padding: 20
+                    spacing: 20
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        icon: 'image-plus'
+                        text: 'Add Files'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                        on_release:
+                            app.file_chooser()
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Stitch\nDirection:\nDown'
+                        icon: 'arrow-down-box'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        icon: 'filmstrip'
+                        text: 'Stitcher'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                        on_release:
+                            app.call_stitcher()
+                            
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Smart\nStitcher'
+                        icon: 'led-strip-variant'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Splitter'
+                        icon: 'content-cut'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        icon: 'scissors-cutting'
+                        text: 'Smart\nSplitter'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                        on_release:
+                            app.call_splitter()
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Copy output\n to input'
+                        icon: 'content-copy'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+                    MDRectangleFlatIconButton:
+                        size_hint_y:1
+                        size_hint_x:1
+                        text: 'Help'
+                        icon: 'information'
+                        font_name: "RobotoBlack"
+                        font_style: "Button"
+                        line_width: 1.1
+
+        MDBottomNavigationItem:
+            text:"s2"
+            name:"s2"
+            MDBoxLayout:
+                orientation: "vertical"
+                MDFloatLayout:
+                    MDRectangleFlatButton:
+                        text: 'My settings MDRectangleFlatButton'
+                        line_width: 1.1
+                        pos_hint: {"center_x":0.5, "center_y":0.6}
+                    MDRectangleFlatButton:
+                        text: 'Back to menu'
+                        line_width: 1.1
+                        on_release: 
+                            root.manager.current = 'menu'
+                            root.manager.transition.direction = 'right'
+                        pos_hint: {"center_x":0.5, "center_y":0.3}
+
+        MDBottomNavigationItem:
+            text:"Theme"
+            name:'theme_screen'
             MDFloatLayout:
-                MDRectangleFlatButton:
-                    text: 'My settings MDRectangleFlatButton'
-                    line_width: 1.1
+                MDLabel:
+                    text:"hehe"
+                MDRectangleFlatIconButton:
+                    text: 'Change\nTheme'
                     pos_hint: {"center_x":0.5, "center_y":0.6}
-                MDRectangleFlatButton:
-                    text: 'Back to menu'
+                    icon: 'brush'
+                    font_name: "RobotoBlack"
+                    font_style: "Button"
                     line_width: 1.1
-                    on_release: 
-                        root.manager.current = 'menu'
-                        root.manager.transition.direction = 'right'
-                    pos_hint: {"center_x":0.5, "center_y":0.3}
+                    on_release:
+                        app.show_theme_picker()
