@@ -38,7 +38,6 @@ class MachiApp(MDApp):
 
     def yoda(self):
         self.files_in_input_folder = os.listdir(".//input//")
-        files_in_input_folder_sorted = []
         files_in_input_folder_sorted = natsorted(self.files_in_input_folder, alg=ns.IGNORECASE)
         for i in files_in_input_folder_sorted:
             self.root.ids.input_lister_text.add_widget(
