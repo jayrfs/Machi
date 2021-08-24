@@ -1,11 +1,9 @@
 from kivy.config import Config
 Config.set('graphics', 'resizable', False)
 
+from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.core.window import Window
-from kivymd.toast import toast
 from kivy.utils import rgba
 from kivy.clock import Clock
 from plyer import filechooser
@@ -23,15 +21,7 @@ Window.size = (360, 640)
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
 
-Builder.load_file(".\\resources\\main.kv")
-
 # Declare both screens
-class MenuScreen(Screen):
-    pass
-
-class SettingsScreen(Screen):
-    pass
-
 class MachiApp(MDApp):
 
     input_selection=[]
@@ -59,15 +49,7 @@ class MachiApp(MDApp):
         # Create the screen manager
         self.theme_cls.primary_palette = "Pink"
         self.theme_cls.primary_hue = "400"
-
-        #load config stuff
-
-
-        sm = ScreenManager()
-        sm.add_widget(MenuScreen(name='menu'))
-        sm.add_widget(SettingsScreen(name='settings'))
-
-        return sm
+        pass
 
     def setbg(self, checkbox, value):
         if value:
