@@ -32,8 +32,12 @@ MDBoxLayout:
                     cols: 2
                     padding: 20
                     spacing: 20
+                    MDLabel:
+                        text: ""
+                    MDLabel:
+                        text: ""
                     MDRectangleFlatIconButton:
-                        size_hint_y:1
+                        size_hint_y:.6
                         size_hint_x:1
                         icon: 'image-plus'
                         text: 'Add Files'
@@ -43,30 +47,30 @@ MDBoxLayout:
                         on_release:
                             app.file_chooser()
                     MDRectangleFlatIconButton:
-                        size_hint_y:1
+                        size_hint_y:.6
                         size_hint_x:1
                         text: 'Copy output\n to input'
-                        icon: 'arrow-down-box'
+                        icon: 'content-copy'
                         font_name: "RobotoBlack"
                         font_style: "Button"
                         line_width: 1.1
                         on_release:
                             app.output_to_input()
                     MDRectangleFlatIconButton:
-                        size_hint_y:1
+                        size_hint_y:.6
                         size_hint_x:1
                         text: 'Clear\ninput\nfolder'
-                        icon: 'arrow-down-box'
+                        icon: 'trash-can-outline'
                         font_name: "RobotoBlack"
                         font_style: "Button"
                         line_width: 1.1
                         on_release:
                             app.flush_input()
                     MDRectangleFlatIconButton:
-                        size_hint_y:1
+                        size_hint_y:.6
                         size_hint_x:1
+                        icon: 'trash-can'
                         text: 'Clear\noutput\nfolder'
-                        icon: 'arrow-down-box'
                         font_name: "RobotoBlack"
                         font_style: "Button"
                         line_width: 1.1
