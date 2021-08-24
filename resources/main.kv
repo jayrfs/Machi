@@ -31,13 +31,15 @@
                 id: output-name-box
                 icon_right: 'rename-box'
                 icon_right_color: "#EC407A"
-                hint_text: "Output name"
+                hint_text: "Output prefix"
+                helper_text: "Default is Machi-"
+                helper_text_mode: "persistent"
                 mode: "rectangle"
                 color_mode: "custom"
                 pos_hint: {"center_x":0.5, "center_y":0.1}
                 size_hint_x: .92
-                height: "30dp"
-
+                on_text_validate:
+                    app.set_prefix(*args)
 
         MDGridLayout:
             cols: 2

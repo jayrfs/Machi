@@ -40,12 +40,12 @@ class MachiApp(MDApp):
     if store.exists('configstuff'):
         pass
     else:
-        store.put('configstuff',theme='dark')
+        store.put('configstuff',theme='dark',default_prefix='Machi-')
     if store.get('configstuff')['theme']=='dark':
         btheme = False
     else:
         btheme = True
-    print(f"btheme = {btheme}")
+    output_prefix = store.get('configstuff')['default_prefix']
 
     def on_start(self):
         #bad code, replace with set_bg later
@@ -99,6 +99,10 @@ class MachiApp(MDApp):
     def call_stitcher(self):
         finelimages = stitchy_code(self)
         write_output(finelimages)
+
+    def set_prefix(self, text):
+        text = self.root.get_screen('menu').ids.output-name-box.text
+        print(text)
 
 if __name__ == '__main__':
     MachiApp().run()
