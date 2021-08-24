@@ -32,6 +32,10 @@ class MachiApp(MDApp):
     input_images=[]
     store = JsonStore('config.json')
 
+    def yoda(self):
+        my_label = self.root.ids.bish
+        print(self.root.ids)
+
     def on_start(self):
         self.set_theme_on_start()
 
