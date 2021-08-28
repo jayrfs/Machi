@@ -30,11 +30,12 @@ print("\t | ")
 for files in list_of_files:
     print(f"\t └ {files}")
 chapter = input(f"\nChoose (enter index) a folder to split or press enter to split all: ")
+parts = int(input(f"\nEnter number of parts: "))
 
 if chapter != "":
     try:
         photo = cv2.imread(f"{inputPath}{list_of_files[int(chapter)]}")
-        split_images = smart_splitter(photo, list_of_files[int(chapter)])
+        split_images = smart_splitter(photo, list_of_files[int(chapter)], parts)
         write_output(split_images[0],split_images[1])
     except Exception as e:
         print(e)
@@ -43,7 +44,7 @@ else:
     for files in list_of_files:
         try:
             photo = cv2.imread(f"{inputPath}{files}")
-            split_images = smart_splitter(photo, files)
+            split_images = smart_splitter(photo, files, parts)
             write_output(split_images[0],split_images[1])
         except Exception as e:
             print(e)

@@ -14,12 +14,14 @@ outputPath = ".//output//"
 extension = ".jpg"
 
 def write_output(image, filename="image"):
-    os.makedirs(f"{outputPath}{filename}")
+    foldername = {filename[:2]}
+    os.makedirs(f"{outputPath}{filename[:2]}")
+    true_path = f"{outputPath}{filename[:2]}"
     if isinstance(image, np.ndarray)==False:
         for index, stuff in enumerate(image):
-            cv2.imwrite(f"{outputPath}//{filename}//{filename}_{index}{extension}",stuff)
+            cv2.imwrite(f"{true_path}//{filename[:2]}_{index}{extension}",stuff)
     else:
-        cv2.imwrite(f"{outputPath}{filename}{extension}",image)
+        cv2.imwrite(f"{true_path}{filename[:2]}{extension}",image)
     return
 
 if __name__ == "__main__":

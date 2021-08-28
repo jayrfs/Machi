@@ -33,8 +33,8 @@ chapter = (input(f"\nChoose a folder to stitch or press enter to stitch all: "))
 if chapter != "":
     try:
         stitchy_code(chapter)
-    except:
-        print('interation failed! skipping...')
+    except Exception as e:
+        print(f'interation failed! skipping...\n{e}')
         pass
 else:
     for files in list_of_files:
