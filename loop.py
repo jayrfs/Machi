@@ -13,7 +13,16 @@ extension = ".png"
 
 #get chapter
 list_of_files = os.listdir(inputPath)
-print("\n\t\tMachi Image-Stitcher")
+print('''   
+
+
+
+_|      _|                      _|        _|  
+_|_|  _|_|    _|_|_|    _|_|_|  _|_|_|        
+_|  _|  _|  _|    _|  _|        _|    _|  _|  
+_|      _|  _|    _|  _|        _|    _|  _|  
+_|      _|    _|_|_|    _|_|_|  _|    _|  _|  
+''')
 print("\nDetected folders in .\input:\n")
 print("\t[+] - Input")
 print("\t | ")
@@ -31,8 +40,8 @@ else:
     for files in list_of_files:
         try:
             stitchy_code(int(files[:2]))
-        except:
-            print('interation failed! skipping...')
+        except Exception as e:
+            print(f'interation failed! skipping...\n{e}')
             pass
 
 print(f"\nProcess completed in {time.perf_counter()-start_time} seconds.")

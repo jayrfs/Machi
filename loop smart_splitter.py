@@ -14,7 +14,16 @@ extension = ".png"
 
 #get chapter
 list_of_files = os.listdir(inputPath)
-print("\n\t\tMachi Image-Stitcher")
+print('''   
+
+
+
+_|      _|                      _|        _|  
+_|_|  _|_|    _|_|_|    _|_|_|  _|_|_|        
+_|  _|  _|  _|    _|  _|        _|    _|  _|  
+_|      _|  _|    _|  _|        _|    _|  _|  
+_|      _|    _|_|_|    _|_|_|  _|    _|  _|  
+''')
 print("\nDetected folders in .\input:\n")
 print("\t[+] - Input")
 print("\t | ")

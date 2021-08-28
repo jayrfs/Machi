@@ -62,7 +62,7 @@ def stitchy_code(chapter_number,buffer_size=300):
     ##cv2.imwrite(f"{filename}_trim{extension}", trimmed_long_image)
 
     #uncomment when running testcode 1
-    #cv2.imwrite(f"{filename}_buffer_{buffer_size}.png", long_image)
+    cv2.imwrite(f"{filename}.png", long_image)
     return(long_image)
 
 

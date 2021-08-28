@@ -2,7 +2,7 @@ import cv2, os
 import numpy as np
 from alive_progress import alive_bar
 
-def smart_splitter(image, name="image", parts=5):
+def smart_splitter(image, name="image", parts=6):
 
     #var
     image_height = image.shape[0]

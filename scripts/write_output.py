@@ -11,12 +11,13 @@ if "output" not in listFiles:
 #add paths
 inputPath = ".//input//"
 outputPath = ".//output//"
-extension = ".png"
+extension = ".jpg"
 
 def write_output(image, filename="image"):
+    os.makedirs(f"{outputPath}{filename}")
     if isinstance(image, np.ndarray)==False:
         for index, stuff in enumerate(image):
-            cv2.imwrite(f"{outputPath}{filename}_{index}_{extension}",stuff)
+            cv2.imwrite(f"{outputPath}//{filename}//{filename}_{index}{extension}",stuff)
     else:
         cv2.imwrite(f"{outputPath}{filename}{extension}",image)
     return
